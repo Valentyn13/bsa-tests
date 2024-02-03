@@ -60,13 +60,11 @@ describe("CartParser - unit tests", () => {
   });
 
   // 6
-  // ERROR TEST(but I don't know how to trigger it)
-
-    // test('parser.validate() should throw "empty cell" error', () => {
-    //   const validationErrors = parser.validate(DATA_WITH_EMPTY_CELL);
-    //   expect(validationErrors.length).toBe(1);
-    //   expect(validationErrors[0].message).toStrictEqual(`Expected cell to be a nonempty string but received "".`);
-    // });
+    test('parser.validate() should throw "empty cell" error', () => {
+      const validationErrors = parser.validate(DATA_WITH_EMPTY_CELL);
+      expect(validationErrors.length).toBe(1);
+      expect(validationErrors[0].message).toStrictEqual(`Expected cell to be a nonempty string but received "".`);
+    });
 
   // 7
   test('parser.validate() should throw "incorrect header" error', () => {
