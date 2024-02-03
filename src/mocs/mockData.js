@@ -5,7 +5,7 @@ export const DATA_WITH_NEGATIVE_CELL =
   "Product name,Price,Quantity\r\nMollis consequat,9.00,3\r\nTvoluptatem,10.32,1\r\nScelerisque lacinia,-4.4,1\r\nConsectetur adipiscing,28.72,10\r\nCondimentum aliquet,13.90,1\r\n";
 
 export const DATA_WITH_BAD_CELLS_NUMBER =
-  "Product name,Price,Quantity\r\nMollis consequat,2\r\nTvoluptatem,10.32,1\r\nScelerisque lacinia,18.90,1\r\nConsectetur adipiscing,28.72,10\r\nCondimentum aliquet,13.90,1\r\n";
+  "Product name,Price,Quantity\r\nMollis consequat,\r\nTvoluptatem,10.32,1\r\nScelerisque lacinia,18.90,1\r\nConsectetur adipiscing,28.72,10\r\nCondimentum aliquet,13.90,1\r\n";
 
 export const DATA_WITH_EMPTY_CELL =
 `Product name,Price,Quantity\n,10.00,2`;
