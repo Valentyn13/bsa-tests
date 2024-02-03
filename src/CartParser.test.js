@@ -24,25 +24,25 @@ beforeEach(() => {
 
 describe("CartParser - unit tests", () => {
   // 1
-  test("parser.readFile method should return correct data", () => {
+  test("parser.readFile() should return correct data", () => {
     const fileData = parser.readFile(CSV_FILE_PATH);
     expect(fileData).toBe(EXPECTED_CSV_FILE_DATA);
   });
 
   // 2
-  test("parser.readFile method should throw error", () => {
+  test("parser.readFile() should throw error", () => {
     expect(() => parser.readFile("bad path", "utf-8").toThrowError());
   });
 
   // 3
-  test("parser.validate method shouldn't throw error", () => {
+  test("parser.validate() shouldn't throw error", () => {
     const fileData = parser.readFile(CSV_FILE_PATH);
     const validationErrors = parser.validate(fileData);
     expect(validationErrors.length).toBe(0);
   });
 
   // 4
-  test('parser.validate method should throw "negative cell" error', () => {
+  test('parser.validate() should throw "negative cell" error', () => {
     const validationErrors = parser.validate(DATA_WITH_NEGATIVE_CELL);
     expect(validationErrors.length).toBe(1);
     expect(validationErrors[0].message).toStrictEqual(
@@ -51,7 +51,7 @@ describe("CartParser - unit tests", () => {
   });
 
   // 5
-  test('parser.validate method should throw "incorrect cells number" error', () => {
+  test('parser.validate() should throw "incorrect cells number" error', () => {
     const validationErrors = parser.validate(DATA_WITH_BAD_CELLS_NUMBER);
     expect(validationErrors.length).toBe(1);
     expect(validationErrors[0].message).toStrictEqual(
@@ -62,14 +62,14 @@ describe("CartParser - unit tests", () => {
   // 6
   // ERROR TEST(but I don't know how to trigger it)
 
-    // test('parser.validate method should throw "empty cell" error', () => {
+    // test('parser.validate() should throw "empty cell" error', () => {
     //   const validationErrors = parser.validate(DATA_WITH_EMPTY_CELL);
     //   expect(validationErrors.length).toBe(1);
     //   expect(validationErrors[0].message).toStrictEqual(`Expected cell to be a nonempty string but received "".`);
     // });
 
   // 7
-  test('parser.validate method should throw "incorrect header" error', () => {
+  test('parser.validate() should throw "incorrect header" error', () => {
     const validationErrors = parser.validate(DATA_WITH_INCORRECT_HEADER);
     expect(validationErrors.length).toBe(1);
     expect(validationErrors[0].message).toStrictEqual(
@@ -78,7 +78,7 @@ describe("CartParser - unit tests", () => {
   });
 
   // 8
-  test("parser.parseLine method should parse all lines correctly", () => {
+  test("parser.parseLine() should parse all lines correctly", () => {
     const lines = EXPECTED_CSV_FILE_DATA.split(/\n/)
       .filter((l) => l)
       .filter((l, i) => i > 0);
@@ -89,13 +89,13 @@ describe("CartParser - unit tests", () => {
   });
 
   // 9
-  test("parser.calcTotal should work correctly", () => {
+  test("parser.calcTotal() should work correctly", () => {
     const total = parser.calcTotal(parsedLines);
     expect(total).toBe(357.31999999999994);
   });
 
   // 10
-  test("parser.createError should return correct error object", () => {
+  test("parser.createError() should return correct error object", () => {
     const error = {
       type: "header",
       row: 2,
@@ -109,18 +109,9 @@ describe("CartParser - unit tests", () => {
 });
 
 describe("CartParser - integration test", () => {
-  test("parser.parse should work correctly", () => {
+// 11
+  test("parser.parse() should work correctly", () => {
     const result = parser.parse(CSV_FILE_PATH);
     expect(result).toStrictEqual(OUTPUT);
   });
-
-  // 11
-  
-  //   test("parser.parse should throw errors", () => {
-  // 	for (const data of BUNCH_OF_BROKEN_DATA) {
-  // 	  expect(() =>
-  // 		expect(parser.parse(data)).toThrowError(/^Validation failed!$/)
-  // 	  );
-  // 	}
-  //   });
 });
